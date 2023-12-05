@@ -1,0 +1,86 @@
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "madoawststdodbspkue201",
+            "DBInstanceClass": "db.r6g.large",
+            "Engine": "docdb",
+            "DBInstanceStatus": "available",
+            "Endpoint": {
+                "Address": "madoawststdodbspkue201.cjxt2g0pu7cz.us-east-2.docdb.amazonaws.com",
+                "Port": 27017,
+                "HostedZoneId": "Z7L8695A82IZ6"
+            },
+            "InstanceCreateTime": datetime.datetime(2023,
+            11,
+            28,
+            20,
+            5,
+            36,
+            980000, tzinfo=tzutc()),
+            "PreferredBackupWindow": "08:02-08:32",
+            "BackupRetentionPeriod": 7,
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-08f17dbaf02bab2c0",
+                    "Status": "active"
+                }
+            ],
+            "AvailabilityZone": "us-east-2b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "madoawststdodbspksgue201",
+                "DBSubnetGroupDescription": "SubnetGroupClusterDocumentDBODDSpokeDeOferta",
+                "VpcId": "vpc-0ca125f758b8d04b5",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-01645fee7423480a9",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-2b"
+                        },
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-0e445a6142a7bb84b",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-2a"
+                        },
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "sun:03:15-sun:03:45",
+            "PendingModifiedValues": {},
+            "EngineVersion": "5.0.0",
+            "AutoMinorVersionUpgrade": False,
+            "PubliclyAccessible": False,
+            "DBClusterIdentifier": "madoawststdodbspkcltue201",
+            "StorageEncrypted": False,
+            "DbiResourceId": "db-EGFATBVFUCGLASUVI6Z47YN42U",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "CopyTagsToSnapshot": False,
+            "PromotionTier": 1,
+            "DBInstanceArn": "arn:aws:rds:us-east-2:573207475371:db:madoawststdodbspkue201",
+            "CertificateDetails": {
+                "CAIdentifier": "rds-ca-2019",
+                "ValidTill": datetime.datetime(2024,
+                8,
+                22,
+                17,
+                8,
+                50, tzinfo=tzutc())
+            }
+        }
+    ],
+    "ResponseMetadata": {
+        "RequestId": "11f7206a-ef73-4b48-bde7-caa6c586e7b2",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "x-amzn-requestid": "11f7206a-ef73-4b48-bde7-caa6c586e7b2",
+            "strict-transport-security": "max-age=31536000",
+            "content-type": "text/xml",
+            "content-length": "4034",
+            "date": "Mon, 04 Dec 2023 23:37:37 GMT"
+        },
+        "RetryAttempts": 0
+    }
+}
