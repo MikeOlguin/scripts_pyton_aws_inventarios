@@ -2,6 +2,12 @@ h1 {
     color: purple;
     text-decoration: underline;
 }
+.inlineblock{
+    display: inline-block;
+}
+.logo{
+    float: right;
+}
 h2 {
     color: maroon;
     text-decoration: underline;
@@ -110,4 +116,51 @@ h2 {
     color: #FFFFFF;
     background: none;
     background-color: #652299;
+}
+
+.available {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #5cb85c;
+}
+.unavailable {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: red;
+}
+.alert {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: yellow;
+}
+.resaltar{
+    color: red;
+}
+
+.rds-table tr td:first-child {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #652299), color-stop(1, #4D1A75));
+    background: -moz-linear-gradient(center top, #652299 5%, #4D1A75 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#652299', endColorstr='#4D1A75');
+    background-color: #652299;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    border-left: 1px solid #714399;
+}
+
+.rds-table td,
+.rds-table th {
+    padding: 3px 10px;
 }
