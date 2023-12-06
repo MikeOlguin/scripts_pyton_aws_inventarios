@@ -1,7 +1,7 @@
 import os
 import boto3
 import botocore
-from datetime import datetime, timedelta
+from datetime import datetime
 from jinja2 import Template
 import base64
 import matplotlib.pyplot as plt
@@ -15,7 +15,7 @@ import pandas as pd
 #Description:  Script Oficial de monitoreo de DocumentDB#
 #              AWS CloudWatch                           #
 #Company:      CTC                                      #
-#Custumer:     MAD                                      # 
+#Custumer:     MADO                                     # 
 #########################################################
 '''
 

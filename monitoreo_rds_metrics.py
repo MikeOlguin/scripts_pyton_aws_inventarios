@@ -14,7 +14,7 @@ import pandas as pd
 #Description:  Script Oficial de monitoreo de RDS DB    #
 #              AWS CloudWatch                           #
 #Company:      CTC                                      #
-#Custumer:     MAD                                      # 
+#Custumer:     MADO                                     # 
 #########################################################
 '''
 AWS_ACCESS_KEY_ID="ASIAYK5OT6SVVEU2EYPJ"
