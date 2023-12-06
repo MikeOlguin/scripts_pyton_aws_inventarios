@@ -44,7 +44,6 @@ def get_db_info(rds_client, instance_identifier):
 def generate_html_report(metric_data_dict, region, instance_name, instance_id, instance_type, db_info, css_content, timestamps):
     storage_type, engine, allocated_storage = db_info
 
-    # Construye la ruta completa para el archivo HTML
     file_path = os.path.join(output_path, f'rds_metrics_report_{region}_{instance_name}.html')
 
     with open(file_path, 'w') as f:
@@ -89,57 +88,43 @@ def generate_plots(metric_data_dict, timestamps, region, instance_name):
         plt.savefig(f'{metric_name}.png')
 
 def main():
-    # Sección de configuración
-    custom_date = '01/12/2023'  # Ajusta la fecha según tus necesidades
+    custom_date = '01/12/2023'  
     metric_names = ['CPUUtilization', 'FreeStorageSpace', 'ReadIOPS', 'WriteIOPS',
                     'ReadLatency', 'WriteLatency', 'ReadThroughput', 'WriteThroughput', 'FreeStorageSpace']
 
-    # Lee el contenido del archivo CSS
     css_content = read_css_file(css_path)
 
-    # Iterar sobre regiones
     for region in aws_regions:
-        # Configura el cliente de CloudWatch para la región actual
         cloudwatch_client = boto3.client('cloudwatch', region_name=region, aws_access_key_id=aws_access_key,
                                          aws_secret_access_key=aws_secret_key, aws_session_token=aws_session_token)
 
-        # Obtiene la información de las instancias de RDS en la región actual
         rds_client = boto3.client('rds', region_name=region, aws_access_key_id=aws_access_key,
                                 aws_secret_access_key=aws_secret_key, aws_session_token=aws_session_token)
         instances = rds_client.describe_db_instances()['DBInstances']
 
-        # Iterar sobre instancias
         for instance in instances:
             instance_identifier = instance['DBInstanceIdentifier']
             instance_name = instance.get('DBInstanceIdentifier')
             instance_id = instance['DBInstanceIdentifier']
             instance_type = instance['DBInstanceClass']
 
-            # Obtén información sobre la base de datos
             db_info = get_db_info(rds_client, instance_identifier)
 
-            # Configura el intervalo de tiempo para obtener las métricas (según la fecha personalizada)
             end_time = datetime.strptime(custom_date, '%d/%m/%Y')
             start_time = end_time - timedelta(days=1)
 
-            # Almacena las métricas de cada instancia en un diccionario
             metric_data_dict = {}
             timestamps = None
             for metric_name in metric_names:
-                # Obtiene las métricas de RDS para una métrica específica
                 metric_data = get_rds_metric(cloudwatch_client, instance_identifier, metric_name, start_time, end_time)
 
-                # Obtiene las marcas de tiempo para todas las métricas (deberían ser iguales para todas las métricas)
                 timestamps = [data['Timestamp'] for data in metric_data] if metric_data else []
 
-                # Agrega solo el último valor del día a las métricas
                 last_data = metric_data[-1] if metric_data else {}
                 metric_data_dict[metric_name] = [last_data]
 
-            # Genera el informe HTML para la instancia
             generate_html_report(metric_data_dict, region, instance_name, instance_id, instance_type, db_info, css_content, timestamps)
 
-            # Genera las gráficas
             generate_plots(metric_data_dict, timestamps, region, instance_name)
 
 if __name__ == "__main__":
