@@ -19,12 +19,13 @@ import pandas as pd
 #########################################################
 '''
 
-AWS_ACCESS_KEY_ID="ASIAYK5OT6SVZWSVA7GV"
-AWS_SECRET_ACCESS_KEY="jLUddjxBRI06dcOZnEP0bv5JxXas5gKR9toZGq2k"
-AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjECkaCXVzLWVhc3QtMiJIMEYCIQCXgOhX6RceHWtmMYZXsZ6TeLPqtTkyngj329QaW6dGCwIhAP1t0cgvAm+VEex8u6YQzZxsYZKMezDWjxMB5YFelyP0KpkDCJL//////////wEQARoMNTczMjA3NDc1MzcxIgwubDmb1rd5Zyv1LHAq7QL859NuF1tYliTdhA7KiQG32cV4H6KZShc0wluMXXrZrwBPZEWXHvgOfSUv9J4iNiZnRNt+X1A1GVTDjBdf+N4jsqpR4qcQXQXGCzIvhP7aWl2AFxhDVF+53SkX17CbGkPc7hEq/d7+Fndr6H7r8oPnswhVbezhMa/DErixR6hjTUUwF3VzpR2z/44vZNglkTiU+/lF/jo6GaE/nKR5Bo8y6DjQ+E2/4V6aZ84ZwBJE984lGRs3oHvJ36o7LMAFwTKrOvV02jnPat6tGfzEM425cygRmLPSuBM9OWVGlUFDoqYb5Xb1Fw9sCB2yF7Fga7F7sgIKyrWkkoW0NdOwivK2NlcTPKVcInXMKgZmEYluA4z6kr9XxTee3pg2UXwNawHHnuZCX0rajBouWwsJUzu7kWvroajVu6ZBMuDoWuTEZdjt0pWHQD8BDCqCuKlHeMhEgdFyurAw3VB9wCR/alhXDamuEYDG6GJ6qUDKSDC3xsKrBjqlAcVVn4aEk/fYvJYo2UTdMV+0Yhyut8YmoigMCaEG/1F3bpj8MqyJqhHtuDC+ckjgDW6wEqT1UNDloNpv/UYeDZ5rroyL808RD+xePtX61E8gzo1tc4QxE1Xr1qIgQgw52GAshG0LafC307P1KzO2FkFfQyaATVamf+W+/ck+fs4puz5hKGDFsq6pVVh5wvVk7X74LPmJbooeKD3lS752nMr78I4mrg=="
+AWS_ACCESS_KEY_ID="ASIAYK5OT6SV7INNDGVF"
+AWS_SECRET_ACCESS_KEY="MFrhx/QRpfvWTebea5AzjFwmz1lvgxbjjXT4Ek8o"
+AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLWVhc3QtMiJHMEUCIDuzwfuLw7EwzO2neqt36mrkN5VitjaW3x9t0zlprexcAiEAl7fWb+l0GGCauNPNsresxWUzto0W+vSbPya1MxawZFUqkAMISRABGgw1NzMyMDc0NzUzNzEiDHTmdgtIX3nowHMz3SrtAg6Q/Kk/MfkL81LL77p3n2ujx/wI642KYh2UqfZ87yKR7Lw2hC8AcHUBiscmz3YbvOt3apLtbOM9yU6hnQHwehBRii+/CNF7irycLJdYtfnRzmCmXWu0hCqyMEy8jpVedIASjb9KcqyUzsBvLtgE1k1rAD60/yXbhXmNFeBZxW5VOXTefs/pGsNfofR1Tzr65aKhNUzoWGyPp9d0dyxHqoEW/b/bf7q8L6D8/PiCDtsouD1S+9n1CvQHuAuajn0AxmdvrVq4Q8tb1bUoon6Xdivno5KzsUk01qWIgpA5yoTyOEi8LKhEVcg+LcfgQwOcyDSVQ9Wxh4sSCUJ8XxMAZiFacMUeWL4dDkydNHxb47n1Ma52mEas4wMqH44UiMxmiIrhWfF3fJdrES4RgjBaeeNyUky32ev7SWRRnmJliu3lsxH7wqRLIfddLMrLudQZXOJa6pyjb0/494qC9CsvpcGsssdKaOMp143ntxi1MPCi56sGOqYBdgbOvA/+hy2693JpFXxVrWMDguU1Nyh3lPRvl/10n4K76SotAk9F6J/WNoa2nc/nFUiEo4/e9A6HXc9HoSlSgFu24VH+yB8mJQDKjq4LXnHUUegUxjcvcmOOSs37b/cpQu7d2cneYkX1mEHnOi5OpZkb9HUBxu2FWN04zaFvjDFDaG4LQEmwRW1OVF6VJ2d/7mKzejNGGwYTIuCVicvUvFVcWjq+6w=="
 
-i_date = '06/12/2023'
-f_date = '06/12/2023'
+AWS_ENVIROMENT='DATA_TEST'
+i_date = '12/12/2023'
+f_date = '12/12/2023'
 
 aws_regions = ['us-east-1', 'us-east-2', 'us-west-1', 'us-west-2']
 
@@ -171,7 +172,8 @@ def generate_html_report(metric_data_dict, region, instance_name, instance_id, i
     fecha_actual = datetime.now().date()
     i_date2 = i_date.replace('/', '-')
     f_date2 = f_date.replace('/', '-')
-    file_path = os.path.join(output_path, f'docdb_metrics_report_{region}_{cluster_identifier}_{i_date2}_al_{f_date2}.html')
+    file_path = os.path.join(output_path, f'docdb_metrics_report_{region}_{cluster_identifier}_{i_date2}_al_{f_date2}_({AWS_ENVIROMENT}).html')
+    #file_path_pdf = os.path.join(output_path, f'docdb_metrics_report_{region}_{cluster_identifier}_{i_date2}_al_{f_date2}.pdf')
     codigo_base64 = obtener_base64_de_imagen(ruta_imagen)
     with open(file_path, 'w') as f:
         template_str = """
@@ -250,8 +252,16 @@ def generate_html_report(metric_data_dict, region, instance_name, instance_id, i
                                        instance_name=instance_name, instance_id=instance_id,
                                        instance_type=instance_type, css_content=css_content,cluster_identifier=cluster_identifier,instances_data_dict=instances_data_dict,fecha_actual=fecha_actual,codigo_base64=codigo_base64,start_time=start_time,end_time=end_time)
         f.write(html_content)
+        f.close()
+        return file_path
 
-
+def convertir_html_a_pdf(html_path, pdf_path):
+    try:
+        HTML(filename=html_path).write_pdf(pdf_path)
+        print(f"Archivo PDF generado exitosamente: {pdf_path}")
+    except Exception as e:
+        print(f"Error al convertir el archivo HTML a PDF: {e}")
+        
 def main():
     metric_names = ['CPUUtilization','FreeableMemory','FreeLocalStorage','VolumeBytesUsed',"DatabaseConnections", 'ReadIOPS', 'WriteIOPS',
                     'ReadLatency', 'WriteLatency', 'ReadThroughput', 'WriteThroughput']
@@ -293,8 +303,8 @@ def main():
                 instance_id = instance_identifier
                 db_info2 = get_docdb_instance_info(docdb_client, instance_identifier)
                 instances_data_dict[instance_identifier] = [db_info2]
-            generate_html_report(metric_data_dict, region, instance_name, instance_id, instance_type, css_content,cluster_identifier,instances_data_dict,start_time,end_time)
-
+            file_path=generate_html_report(metric_data_dict, region, instance_name, instance_id, instance_type, css_content,cluster_identifier,instances_data_dict,start_time,end_time)
+            #convertir_html_a_pdf(file_path,file_path_pdf)
 
 if __name__ == "__main__":
     main()

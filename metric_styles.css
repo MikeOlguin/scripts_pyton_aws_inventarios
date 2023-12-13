@@ -8,9 +8,21 @@ h1 {
 .logo{
     float: right;
 }
-h2 {
+.showMetrics{
+    cursor: pointer;
+}
+.showMetrics:hover{
+    color: red;
+}
+h2,h3 {
     color: maroon;
     text-decoration: underline;
+}
+.title_small{
+    color: blue;
+}
+.title_micro{
+    color: crimson;
 }
 .datagrid table {
     border-collapse: collapse;
@@ -163,4 +175,10 @@ h2 {
 .rds-table td,
 .rds-table th {
     padding: 3px 10px;
+}
+.graphic_metric img{
+    width: 50%;
+}
+.flecha_show{
+   color: black; 
 }

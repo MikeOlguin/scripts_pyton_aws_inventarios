@@ -17,12 +17,13 @@ import pandas as pd
 #Custumer:     MADO                                     # 
 #########################################################
 '''
-AWS_ACCESS_KEY_ID="ASIAYK5OT6SVVEU2EYPJ"
-AWS_SECRET_ACCESS_KEY="tTWVkSRWDEH7Go97sUylaUTwR/TBC2x/J3zxd8st"
-AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEC0aCXVzLWVhc3QtMiJIMEYCIQC9xgNKJHnhabuDQIILumPChm7Hl99gt/fpQ9I6++7RegIhAP7lmQrYjCiNYEIPKEK3fO/fmZohvWCW4vCopq06ZrLuKpkDCJb//////////wEQARoMNTczMjA3NDc1MzcxIgzq2HqNYrhsdc+WM6Iq7QLRU2sN0FFJJJwv1SaiGJzPktpD82GGCFdXc9V4oIwCfIgwba3IO/5FSx4MSygtzhyGT1Bl0xUfQzYAbBdCtY8bPV5DiYYXvQSA8J/zEju6C8fuvChqx7EX0J8sZCGk7cW5vBvY+AUUNHmTO6HulUxj1Nt7wabCyVUUl36C9kxV1rCaxWK9N4P+pxJ0ppuAyVTfZY9w3xFRdxXI/62nEN4cSg9GeiwDw0OASDPz4Ogk19UFeVNEIithBUtDF++ot/oup4DrXulfKzjxGsPh6ib3/Tl+RBFqY8cSQaziv7R/sa1iCbaDupmAUdhziDcF7k7g9NVWysjth8YlBT/QSeE4miksO9g4rvMsjwCw9CzgABlT+Jl9GWipqjLuVbWj57QmlodqVsivKmX6b9ovZT8W2pisZqnt3Q6krik5s/JVoPcj/vJ4LCA2swZUJXrSP6XDTXEm5Dtr5xkuSlMQdERieSNbVYuKzFPiBcZX5zDRw8OrBjqlAU/DNToalgcg9HIu8rqH+s0iqhySgtdI6a+njsUL1HafbdK0ttljm55J+6f8ZNzbUeD3ShfCTIu5AugSKiv7h4hlKafJTOzhn0fmWP0kHrPWjlY9VKGkzgpruSrZXNTkRKRDPbti1GAajP3CqTfiv6q280jQZpmSCj/CKCjPKrvbQyNB52L+YT/iItXrDmIMSdOwFfzcFrL2OYAOBSYr3Lkbxl9bXg=="
+AWS_ACCESS_KEY_ID="ASIA26YQ5HXRZEYCCFFS"
+AWS_SECRET_ACCESS_KEY="EgC8LTeu0xtwSEUQtiLEUZWnPYhWqeQdGeKjemeJ"
+AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLWVhc3QtMiJGMEQCIAj6nar+Itr0k99uYbRjTU38jyeeG8rM2VlW6dCYnzW+AiAk2nDA/HU7jS+7u8rS5rO1EEmznZlxqqpAXRRqL5iHLSqQAwhJEAEaDDc1MzI2NTM2MDM1NSIM7RtHb/4e/J36oQwhKu0CQRttY/KymMk6J7mCcivTIfm0iW24koelMow+anxYvz6tlCvTl2mPQ5cGCORzBbkb8ZB4VFnC0xQpQRQRnwvboetXi3OlfgcqkNSvXz2GoWpImd9imt97noct627KnFzlFTyWtyU8WlP3fnLHXRi3vpE4dc7vFjWRiWghhHN0EzxNnB51SRzn7uz1AktUN+RNC9ZWxaRrHFVPrnFkU8fjy6W3+hHaG8U7C1yVs4COXYNVTg2/lJTzmgcDLyJWfUMCNSZ9J4WfUaloU98uLnrWEWiTTZVCOPOBGArUYV+SvezRoqa/tDimG++SB5qOQ2peCPx1ev+9NpRMcm4vCTHwpNiUh2TWtwWdPlqIBzLLiDNUsgi+ApC3guYsASg9e8DHF66tQhMXYvWENKs8jIS9+5QjQoIoUdELhIujSdBVWn8WrfMvSVcczILrPxlqSDFOoRgczualLe4avKXVXjPMdy+7HkLlzIMnJHjBCTcwoKrnqwY6pwFzeNRKZpjKeGx6FSUhwAfDaeC6XgvQyygupLI1SihATB1o6xGCvVtayTKVKlzEWWEkUElW/PfT+yl5pIQsfHz/93MzLpSKPUjejYY4TvEUNla7WP8fFhmDp6PICAXjMEJKWArmI+4TbSxBcMwhZ6Z6JSKJViz8nrAaJ2yWAoWJIxCeJDy5BTnKH5SQClUNRC03ug/Xh+38FfkOB6kVcoWOKFljPZZHeg=="
 
-i_date = '06/12/2023'
-f_date = '06/12/2023'
+AWS_ENVIROMENT='DATA_PROD'
+i_date = '12/12/2023'
+f_date = '12/12/2023'
 
 regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"] 
 
@@ -100,14 +101,14 @@ def generate_html_report(metric_data_dict, region, table, css_content):
     fecha_actual = datetime.now().date()
     i_date2 = i_date.replace('/', '-')
     f_date2 = f_date.replace('/', '-')
-    file_path = os.path.join(output_path, f'Dynamo_metrics_report_{region}_{table}_{i_date2}_al_{f_date2}.html')
+    file_path = os.path.join(output_path, f'Dynamo_metrics_report_{region}_{table}_{i_date2}_al_{f_date2}_({AWS_ENVIROMENT}).html')
     codigo_base64 = obtener_base64_de_imagen(ruta_imagen)
     f = open (file_path, 'w')
     template_str = """
         <!DOCTYPE html>
         <html>
         <head>
-            <title>RDS Metrics Report</title>
+            <title>Reporte de metricas Dynamo DB</title>
             <style>
                 {{ css_content }}
             </style>

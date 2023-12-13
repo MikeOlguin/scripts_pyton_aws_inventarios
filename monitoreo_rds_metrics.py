@@ -17,12 +17,13 @@ import pandas as pd
 #Custumer:     MADO                                     # 
 #########################################################
 '''
-AWS_ACCESS_KEY_ID="ASIAYK5OT6SVVEU2EYPJ"
-AWS_SECRET_ACCESS_KEY="tTWVkSRWDEH7Go97sUylaUTwR/TBC2x/J3zxd8st"
-AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEC0aCXVzLWVhc3QtMiJIMEYCIQC9xgNKJHnhabuDQIILumPChm7Hl99gt/fpQ9I6++7RegIhAP7lmQrYjCiNYEIPKEK3fO/fmZohvWCW4vCopq06ZrLuKpkDCJb//////////wEQARoMNTczMjA3NDc1MzcxIgzq2HqNYrhsdc+WM6Iq7QLRU2sN0FFJJJwv1SaiGJzPktpD82GGCFdXc9V4oIwCfIgwba3IO/5FSx4MSygtzhyGT1Bl0xUfQzYAbBdCtY8bPV5DiYYXvQSA8J/zEju6C8fuvChqx7EX0J8sZCGk7cW5vBvY+AUUNHmTO6HulUxj1Nt7wabCyVUUl36C9kxV1rCaxWK9N4P+pxJ0ppuAyVTfZY9w3xFRdxXI/62nEN4cSg9GeiwDw0OASDPz4Ogk19UFeVNEIithBUtDF++ot/oup4DrXulfKzjxGsPh6ib3/Tl+RBFqY8cSQaziv7R/sa1iCbaDupmAUdhziDcF7k7g9NVWysjth8YlBT/QSeE4miksO9g4rvMsjwCw9CzgABlT+Jl9GWipqjLuVbWj57QmlodqVsivKmX6b9ovZT8W2pisZqnt3Q6krik5s/JVoPcj/vJ4LCA2swZUJXrSP6XDTXEm5Dtr5xkuSlMQdERieSNbVYuKzFPiBcZX5zDRw8OrBjqlAU/DNToalgcg9HIu8rqH+s0iqhySgtdI6a+njsUL1HafbdK0ttljm55J+6f8ZNzbUeD3ShfCTIu5AugSKiv7h4hlKafJTOzhn0fmWP0kHrPWjlY9VKGkzgpruSrZXNTkRKRDPbti1GAajP3CqTfiv6q280jQZpmSCj/CKCjPKrvbQyNB52L+YT/iItXrDmIMSdOwFfzcFrL2OYAOBSYr3Lkbxl9bXg=="
+AWS_ACCESS_KEY_ID="ASIAYK5OT6SV7INNDGVF"
+AWS_SECRET_ACCESS_KEY="MFrhx/QRpfvWTebea5AzjFwmz1lvgxbjjXT4Ek8o"
+AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLWVhc3QtMiJHMEUCIDuzwfuLw7EwzO2neqt36mrkN5VitjaW3x9t0zlprexcAiEAl7fWb+l0GGCauNPNsresxWUzto0W+vSbPya1MxawZFUqkAMISRABGgw1NzMyMDc0NzUzNzEiDHTmdgtIX3nowHMz3SrtAg6Q/Kk/MfkL81LL77p3n2ujx/wI642KYh2UqfZ87yKR7Lw2hC8AcHUBiscmz3YbvOt3apLtbOM9yU6hnQHwehBRii+/CNF7irycLJdYtfnRzmCmXWu0hCqyMEy8jpVedIASjb9KcqyUzsBvLtgE1k1rAD60/yXbhXmNFeBZxW5VOXTefs/pGsNfofR1Tzr65aKhNUzoWGyPp9d0dyxHqoEW/b/bf7q8L6D8/PiCDtsouD1S+9n1CvQHuAuajn0AxmdvrVq4Q8tb1bUoon6Xdivno5KzsUk01qWIgpA5yoTyOEi8LKhEVcg+LcfgQwOcyDSVQ9Wxh4sSCUJ8XxMAZiFacMUeWL4dDkydNHxb47n1Ma52mEas4wMqH44UiMxmiIrhWfF3fJdrES4RgjBaeeNyUky32ev7SWRRnmJliu3lsxH7wqRLIfddLMrLudQZXOJa6pyjb0/494qC9CsvpcGsssdKaOMp143ntxi1MPCi56sGOqYBdgbOvA/+hy2693JpFXxVrWMDguU1Nyh3lPRvl/10n4K76SotAk9F6J/WNoa2nc/nFUiEo4/e9A6HXc9HoSlSgFu24VH+yB8mJQDKjq4LXnHUUegUxjcvcmOOSs37b/cpQu7d2cneYkX1mEHnOi5OpZkb9HUBxu2FWN04zaFvjDFDaG4LQEmwRW1OVF6VJ2d/7mKzejNGGwYTIuCVicvUvFVcWjq+6w=="
 
-i_date = '06/12/2023'
-f_date = '06/12/2023'
+AWS_ENVIROMENT='DATA_TEST'
+i_date = '12/12/2023'
+f_date = '12/12/2023'
 
 aws_regions = ['us-east-1', 'us-east-2', 'us-west-1', 'us-west-2']
 
@@ -98,7 +99,7 @@ def generate_html_report(metric_data_dict, region,instance_data_dict, css_conten
     fecha_actual = datetime.now().date()
     i_date2 = i_date.replace('/', '-')
     f_date2 = f_date.replace('/', '-')
-    file_path = os.path.join(output_path, f'rds_metrics_report_{region}_{first_key}_{i_date2}_al_{f_date2}.html')
+    file_path = os.path.join(output_path, f'rds_metrics_report_{region}_{first_key}_{i_date2}_al_{f_date2}_({AWS_ENVIROMENT}).html')
     codigo_base64 = obtener_base64_de_imagen(ruta_imagen)
     with open(file_path, 'w') as f:
         template_str = """

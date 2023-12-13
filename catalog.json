@@ -1,0 +1,24 @@
+{
+    "MetricDataResults": [
+        {
+            "Id": "m1",
+            "Label": "QueryPlanningTime",
+            "Timestamps": [],
+            "Values": [],
+            "StatusCode": "Complete"
+        }
+    ],
+    "Messages": [],
+    "ResponseMetadata": {
+        "RequestId": "2ee62295-e6ae-4297-ade6-640b4be4fec0",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "x-amzn-requestid": "2ee62295-e6ae-4297-ade6-640b4be4fec0",
+            "content-type": "text/xml",
+            "content-length": "500",
+            "date": "Fri, 08 Dec 2023 18:53:34 GMT",
+            "connection": "close"
+        },
+        "RetryAttempts": 0
+    }
+}
