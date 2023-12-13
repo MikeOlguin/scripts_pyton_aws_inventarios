@@ -19,9 +19,9 @@ import pandas as pd
 #########################################################
 '''
 
-AWS_ACCESS_KEY_ID="ASIAYK5OT6SV7INNDGVF"
-AWS_SECRET_ACCESS_KEY="MFrhx/QRpfvWTebea5AzjFwmz1lvgxbjjXT4Ek8o"
-AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEND//////////wEaCXVzLWVhc3QtMiJHMEUCIDuzwfuLw7EwzO2neqt36mrkN5VitjaW3x9t0zlprexcAiEAl7fWb+l0GGCauNPNsresxWUzto0W+vSbPya1MxawZFUqkAMISRABGgw1NzMyMDc0NzUzNzEiDHTmdgtIX3nowHMz3SrtAg6Q/Kk/MfkL81LL77p3n2ujx/wI642KYh2UqfZ87yKR7Lw2hC8AcHUBiscmz3YbvOt3apLtbOM9yU6hnQHwehBRii+/CNF7irycLJdYtfnRzmCmXWu0hCqyMEy8jpVedIASjb9KcqyUzsBvLtgE1k1rAD60/yXbhXmNFeBZxW5VOXTefs/pGsNfofR1Tzr65aKhNUzoWGyPp9d0dyxHqoEW/b/bf7q8L6D8/PiCDtsouD1S+9n1CvQHuAuajn0AxmdvrVq4Q8tb1bUoon6Xdivno5KzsUk01qWIgpA5yoTyOEi8LKhEVcg+LcfgQwOcyDSVQ9Wxh4sSCUJ8XxMAZiFacMUeWL4dDkydNHxb47n1Ma52mEas4wMqH44UiMxmiIrhWfF3fJdrES4RgjBaeeNyUky32ev7SWRRnmJliu3lsxH7wqRLIfddLMrLudQZXOJa6pyjb0/494qC9CsvpcGsssdKaOMp143ntxi1MPCi56sGOqYBdgbOvA/+hy2693JpFXxVrWMDguU1Nyh3lPRvl/10n4K76SotAk9F6J/WNoa2nc/nFUiEo4/e9A6HXc9HoSlSgFu24VH+yB8mJQDKjq4LXnHUUegUxjcvcmOOSs37b/cpQu7d2cneYkX1mEHnOi5OpZkb9HUBxu2FWN04zaFvjDFDaG4LQEmwRW1OVF6VJ2d/7mKzejNGGwYTIuCVicvUvFVcWjq+6w=="
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_SESSION_TOKEN="//////////wEaCXVzLWVhc3QtMiJHMEUCIDuzwfuLw7EwzO2neqt36mrkN5VitjaW3x9t0zlprexcAiEAl7fWb+l0GGCauNPNsresxWUzto0W+vSbPya1MxawZFUqkAMISRABGgw1NzMyMDc0NzUzNzEiDHTmdgtIX3nowHMz3SrtAg6Q/Kk/MfkL81LL77p3n2ujx/wI642KYh2UqfZ87yKR7Lw2hC8AcHUBiscmz3YbvOt3apLtbOM9yU6hnQHwehBRii+/CNF7irycLJdYtfnRzmCmXWu0hCqyMEy8jpVedIASjb9KcqyUzsBvLtgE1k1rAD60/yXbhXmNFeBZxW5VOXTefs/pGsNfofR1Tzr65aKhNUzoWGyPp9d0dyxHqoEW/b/bf7q8L6D8/PiCDtsouD1S+9n1CvQHuAuajn0AxmdvrVq4Q8tb1bUoon6Xdivno5KzsUk01qWIgpA5yoTyOEi8LKhEVcg+LcfgQwOcyDSVQ9Wxh4sSCUJ8XxMAZiFacMUeWL4dDkydNHxb47n1Ma52mEas4wMqH44UiMxmiIrhWfF3fJdrES4RgjBaeeNyUky32ev7SWRRnmJliu3lsxH7wqRLIfddLMrLudQZXOJa6pyjb0/494qC9CsvpcGsssdKaOMp143ntxi1MPCi56sGOqYBdgbOvA/+hy2693JpFXxVrWMDguU1Nyh3lPRvl/10n4K76SotAk9F6J/WNoa2nc/nFUiEo4/e9A6HXc9HoSlSgFu24VH+yB8mJQDKjq4LXnHUUegUxjcvcmOOSs37b/cpQu7d2cneYkX1mEHnOi5OpZkb9HUBxu2FWN04zaFvjDFDaG4LQEmwRW1OVF6VJ2d/7mKzejNGGwYTIuCVicvUvFVcWjq+6w=="
 
 AWS_ENVIROMENT='DATA_TEST'
 i_date = '12/12/2023'
@@ -257,7 +257,7 @@ def generate_html_report(metric_data_dict, region, instance_name, instance_id, i
 
 def convertir_html_a_pdf(html_path, pdf_path):
     try:
-        HTML(filename=html_path).write_pdf(pdf_path)
+        #HTML(filename=html_path).write_pdf(pdf_path)
         print(f"Archivo PDF generado exitosamente: {pdf_path}")
     except Exception as e:
         print(f"Error al convertir el archivo HTML a PDF: {e}")
