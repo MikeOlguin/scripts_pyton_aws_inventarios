@@ -27,7 +27,7 @@ f_date = '12/12/2023'
 
 regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"] 
 
-output_path = 'C:/Users/mikeo/OneDrive/Documentos/Proyectos Mobility ADO/AWS/scripts_pyton_aws_inventarios/'
+output_path = 'C:/Users/mikeo/OneDrive/Documentos/Proyectos Mobility ADO/AWS/scripts_pyton_aws_inventarios/Automatizacion/'
 
 css_path = 'C:/Users/mikeo/OneDrive/Documentos/Proyectos Mobility ADO/AWS/scripts_pyton_aws_inventarios/metric_styles.css'
 
@@ -101,6 +101,7 @@ def generate_html_report(metric_data_dict, region, table, css_content):
     fecha_actual = datetime.now().date()
     i_date2 = i_date.replace('/', '-')
     f_date2 = f_date.replace('/', '-')
+    os.makedirs(output_path, exist_ok=True)
     file_path = os.path.join(output_path, f'Dynamo_metrics_report_{region}_{table}_{i_date2}_al_{f_date2}_({AWS_ENVIROMENT}).html')
     codigo_base64 = obtener_base64_de_imagen(ruta_imagen)
     f = open (file_path, 'w')
@@ -152,7 +153,4 @@ def generate_html_report(metric_data_dict, region, table, css_content):
     f.close()  
 
 if __name__ == "__main__":
-    os.environ['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY_ID
-    os.environ['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_ACCESS_KEY
-    os.environ['AWS_SESSION_TOKEN'] = AWS_SESSION_TOKEN
     main()                  
