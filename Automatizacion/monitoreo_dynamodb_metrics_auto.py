@@ -17,13 +17,13 @@ import pandas as pd
 #Custumer:     MADO                                     # 
 #########################################################
 '''
-AWS_ACCESS_KEY_ID="ASIAYK5OT6SV6YBDO73J"
-AWS_SECRET_ACCESS_KEY="LO20rs/iGHJ4CDx0RSgiKGMsEZMMwMENQcjnIqYm"
-AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjENj//////////wEaCXVzLWVhc3QtMiJHMEUCIQCLhhB+vZFsb9gFMHQbnGfXZqvGUVaZ0qlNvS1YYyU3iwIgLu2zYo3jBUNmdNc7gJZ09Ov9UMyuTUgWYTtrhe2hH8oqkAMIURABGgw1NzMyMDc0NzUzNzEiDMevtB4xgA619p7nsirtAjicj5LYwtIvtX6InIOI2gP92E2Ww11S93sKygSA4e3OMEDeGXvllU2JeMtuFXd0evrp4lv59rwqRS+1mWo04Ta/QsDV9otIpZCTtK72Nu0cqfjle4Gb/Jhlf9fviIdo8Sh83DURaWiKc8K8r6xwzrNukDjC3I9rzc9X+LpXTsH5hPCzgzgoPy4AdbNKrVr3Z0H0BFAGuWJ9nOzMq58hqANwFTy0wLAjjixBSu1+ySTonhcbp+5jBHq8VxmZnrLEcUaGgwE6NA6Vd3zv3TlKLJwhGiKinGc4AjKZSMR4HGl4JtdVuk60RNoB/wwULWEaWx+0raE1LwzX60S3tF/et7eic4FbAIeH5qKx8FGqgCsFfb1W6mfnin7BHOrHbBFGUynGJeADv1P29hndPW5bjjIv2kcCcNJfEJtwkZXx7nu6LqqQty1USRDkwCHs+LV3cKQQxyMurc0ULq5tgmYZmbY7t5V+7vqrw7BNxTalMPyH6asGOqYBqL2JMa82bVPKantg9WFOyrb9xEHtv6TSeC7pvgdfRstjIElAn0tLMBw22ZrHhnN6GOAVgA2cE6be+Oog9Po5qhnQbwFCHVPrdaP+MB//YA6TGSCxS/ctbmOwJVDbEd+gp0vvrX1M8EQy30c/8HLm6SpimBjbLMMiRhO3KAlADWpisOkBexaSqxxVb0TqjwPmPye5CIVoTGsmLES+4XSTXQvz5tluOg=="
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_SESSION_TOKEN=""
 
-AWS_ENVIROMENT='DATA_TEST'
-i_date = '12/12/2023'
-f_date = '12/12/2023'
+AWS_ENVIROMENT=''
+i_date = ''
+f_date = ''
 
 regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"] 
 
@@ -153,4 +153,14 @@ def generate_html_report(metric_data_dict, region, table, css_content):
     f.close()  
 
 if __name__ == "__main__":
-    main()                  
+    print('> Iniciando ejecución de script reporte de metricas DynamoDB...')
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_SESSION_TOKEN = os.environ['AWS_SESSION_TOKEN']
+    AWS_ENVIROMENT = os.environ['AWS_ENVIROMENT']
+    i_date = os.environ['FECHA_INICIO']
+    f_date = os.environ['FECHA_FIN']
+    print('> Recuperacion de variables de ejecución completa...')
+    print('> Iniciando generación de reportes...')
+    main()
+    print('> Finalizando ejecución de script reporte de metricas DynamoDB...')                  

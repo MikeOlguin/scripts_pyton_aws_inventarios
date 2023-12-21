@@ -8,7 +8,7 @@ from tkcalendar import DateEntry
 AWS_ACCESS_KEY_ID = ""
 AWS_SECRET_ACCESS_KEY = ""
 AWS_SESSION_TOKEN = ""
-AWS_ENVIRONMENT = "DATA-DEV"
+AWS_ENVIRONMENT = "API-DEV"
 FECHA_INICIO = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 FECHA_FIN = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 
@@ -20,6 +20,7 @@ def run_script():
     AWS_ENVIRONMENT = environment_combobox.get()
     FECHA_INICIO = FECHA_INICIO_entry.get()
     FECHA_FIN = FECHA_FIN_entry.get()
+    log_text.insert(tk.END, f"##################INICIANDO METRICAS DE AMBIENTE{AWS_ENVIRONMENT}##################\n", "progress")
     print(f"Generando reportes de {AWS_ENVIRONMENT}")
     current_directory = os.path.dirname(os.path.abspath(__file__))
     fecha_file = (datetime.now() - timedelta(days=1)).strftime('%d%m%Y')
@@ -50,7 +51,8 @@ def run_script():
             log_text.insert(tk.END, f"El script {name_script} ha terminado correctamente.\n", "success")
         else:
             log_text.insert(tk.END, f"Error al ejecutar el script {name_script}.\n", "error")
-
+    log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE{AWS_ENVIRONMENT}##################\n", "progress")
+    
 root = tk.Tk()
 root.title("AWS Script GUI")
 root.geometry("650x400+50+50")
