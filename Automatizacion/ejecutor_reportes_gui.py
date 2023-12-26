@@ -1,6 +1,7 @@
 import subprocess
 import os
 from datetime import datetime, timedelta
+import threading
 import tkinter as tk
 from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
@@ -11,7 +12,7 @@ AWS_SESSION_TOKEN = ""
 AWS_ENVIRONMENT = "API-DEV"
 FECHA_INICIO = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 FECHA_FIN = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
-
+'''
 def run_script():
     global AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN, AWS_ENVIRONMENT, FECHA_INICIO, FECHA_FIN
     AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID_entry.get()
@@ -20,7 +21,7 @@ def run_script():
     AWS_ENVIRONMENT = environment_combobox.get()
     FECHA_INICIO = FECHA_INICIO_entry.get()
     FECHA_FIN = FECHA_FIN_entry.get()
-    log_text.insert(tk.END, f"##################INICIANDO METRICAS DE AMBIENTE{AWS_ENVIRONMENT}##################\n", "progress")
+    log_text.insert(tk.END, f"##################INICIANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")
     print(f"Generando reportes de {AWS_ENVIRONMENT}")
     current_directory = os.path.dirname(os.path.abspath(__file__))
     fecha_file = (datetime.now() - timedelta(days=1)).strftime('%d%m%Y')
@@ -51,8 +52,60 @@ def run_script():
             log_text.insert(tk.END, f"El script {name_script} ha terminado correctamente.\n", "success")
         else:
             log_text.insert(tk.END, f"Error al ejecutar el script {name_script}.\n", "error")
-    log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE{AWS_ENVIRONMENT}##################\n", "progress")
-    
+    log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")
+'''   
+def run_script():
+    global AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN, AWS_ENVIRONMENT, FECHA_INICIO, FECHA_FIN
+    AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID_entry.get()
+    AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY_entry.get()
+    AWS_SESSION_TOKEN = AWS_SESSION_TOKEN_entry.get()
+    AWS_ENVIRONMENT = environment_combobox.get()
+    FECHA_INICIO = FECHA_INICIO_entry.get()
+    FECHA_FIN = FECHA_FIN_entry.get()
+    log_text.insert(tk.END, f"##################INICIANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")
+    print(f"Generando reportes de {AWS_ENVIRONMENT}")
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    fecha_file = (datetime.now() - timedelta(days=1)).strftime('%d%m%Y')
+    dir = f'Reportes_Metricas_AWS_DB_{fecha_file}'
+    output_path = os.path.join(current_directory,dir)
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+        print(f"Directorio '{output_path}' creado exitosamente.")
+    else:
+        print(f"El directorio '{output_path}' ya existe.")
+        
+    os.environ['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY_ID
+    os.environ['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_ACCESS_KEY
+    os.environ['AWS_SESSION_TOKEN'] = AWS_SESSION_TOKEN
+    os.environ['AWS_ENVIROMENT'] = AWS_ENVIRONMENT
+    os.environ['FECHA_INICIO'] = FECHA_INICIO
+    os.environ['FECHA_FIN'] = FECHA_FIN
+    os.environ['DIR_REPORT'] = dir
+    scripts = ["\\monitoreo_athena_metrics_auto.py", "\\monitoreo_documentDB_metrics_auto.py",
+           "\\monitoreo_dynamodb_metrics_auto.py", "\\monitoreo_rds_metrics_auto.py"]
+    def execute_script(script_name, script_path):
+        log_text.insert(tk.END, f"Ejecutando script {script_name} ...\n", "progress")
+        proceso_script = subprocess.Popen(["python", script_path])
+        proceso_script.communicate()
+        if proceso_script.returncode == 0:
+            log_text.insert(tk.END, f"El script {script_name} ha terminado correctamente.\n", "success")
+        else:
+            log_text.insert(tk.END, f"Error al ejecutar el script {script_name}.\n", "error")
+
+    threads = []
+    for script in scripts:
+        name_script = script
+        script_path = current_directory + script
+        thread = threading.Thread(target=execute_script, args=(name_script, script_path))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+
+    log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")
+
+
 root = tk.Tk()
 root.title("AWS Script GUI")
 root.geometry("650x400+50+50")
