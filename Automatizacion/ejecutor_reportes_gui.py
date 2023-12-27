@@ -12,7 +12,7 @@ AWS_SESSION_TOKEN = ""
 AWS_ENVIRONMENT = "API-DEV"
 FECHA_INICIO = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 FECHA_FIN = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
-'''
+
 def run_script():
     global AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN, AWS_ENVIRONMENT, FECHA_INICIO, FECHA_FIN
     AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID_entry.get()
@@ -104,7 +104,7 @@ def run_script():
         thread.join()
 
     log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")
-
+'''
 
 root = tk.Tk()
 root.title("AWS Script GUI")
@@ -129,7 +129,7 @@ AWS_SESSION_TOKEN_entry.grid(row=2, column=1, padx=5, pady=5)
 tk.Button(margin_frame, text="Limpiar", command=lambda: AWS_SESSION_TOKEN_entry.delete(0, tk.END)).grid(row=2, column=2)
 
 tk.Label(margin_frame, text="AWS_ENVIRONMENT:").grid(row=3, column=0, sticky="w")
-environments = ["API-DEV", "API-PORD", "API-TEST", "SERV-TEST", "DATA-DEV", "DATA-PROD", "DATA-TEST", "SERV-DEV", "SERV-PROD"]
+environments = ["API-DEV", "API-PROD", "API-TEST", "SERV-TEST", "DATA-DEV", "DATA-PROD", "DATA-TEST", "SERV-DEV", "SERV-PROD"]
 environment_combobox = ttk.Combobox(margin_frame, values=environments, state="readonly")
 environment_combobox.set(AWS_ENVIRONMENT)
 environment_combobox.grid(row=3, column=1, padx=5, pady=5)
