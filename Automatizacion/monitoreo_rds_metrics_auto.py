@@ -208,6 +208,17 @@ if __name__ == "__main__":
     i_date = os.environ['FECHA_INICIO']
     f_date = os.environ['FECHA_FIN']  
     output_path = os.path.join(current_directory,os.environ['DIR_REPORT'])
+    if 'DEV' in AWS_ENVIROMENT:
+        output_path  = output_path+'\\RDS\\DEV'
+        print('Ambiente de producción (DEV)')
+    elif 'PROD' in AWS_ENVIROMENT:
+        output_path  = output_path+'\\RDS\\PROD'
+        print('Ambiente de producción (PROD)')
+    elif 'TEST' in AWS_ENVIROMENT:
+        output_path  = output_path+'\\RDS\\QA'
+        print('Ambiente de prueba (TEST)')
+    else:
+        print('Ambiente no reconocido')
     print('> Recuperacion de variables de ejecución completa...')
     print('> Iniciando generación de reportes...')
     main()

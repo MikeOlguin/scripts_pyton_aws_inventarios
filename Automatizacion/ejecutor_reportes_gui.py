@@ -13,6 +13,31 @@ AWS_ENVIRONMENT = "API-DEV"
 FECHA_INICIO = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 FECHA_FIN = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 
+def crea_dir(output_path):
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+        print(f"Directorio '{output_path}' creado exitosamente.")
+        dir_serv = ["\\Athena", "\\DynamoDB","\\DocumentDB", "\\RDS"]
+        dir_amb = ["\\DEV", "\\QA","\\PROD"]
+        for dir_s in dir_serv: 
+            serv_path  = output_path+dir_s
+            print(f"Directorio '{serv_path}'.")
+            if not os.path.exists(serv_path):
+                os.makedirs(serv_path)
+                print(f"Directorio '{serv_path}' creado exitosamente.")
+                for dir_a in dir_amb: 
+                    amb_path  = serv_path+dir_a
+                    if not os.path.exists(amb_path):
+                        os.makedirs(amb_path)
+                        print(f"Directorio '{amb_path}' creado exitosamente.")
+                    else:
+                        print(f"El directorio '{amb_path}' ya existe.")
+            else:
+                print(f"El directorio '{serv_path}' ya existe.")
+    else:
+        print(f"El directorio '{output_path}' ya existe.")
+        
+        
 def run_script():
     global AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN, AWS_ENVIRONMENT, FECHA_INICIO, FECHA_FIN
     AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID_entry.get()
@@ -27,12 +52,12 @@ def run_script():
     fecha_file = (datetime.now() - timedelta(days=1)).strftime('%d%m%Y')
     dir = f'Reportes_Metricas_AWS_DB_{fecha_file}'
     output_path = os.path.join(current_directory,dir)
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
-        print(f"Directorio '{output_path}' creado exitosamente.")
-    else:
-        print(f"El directorio '{output_path}' ya existe.")
-        
+    crea_dir(output_path)
+    # if not os.path.exists(output_path):
+    #     os.makedirs(output_path)
+    #     print(f"Directorio '{output_path}' creado exitosamente.")
+    # else:
+    #     print(f"El directorio '{output_path}' ya existe.")   
     os.environ['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY_ID
     os.environ['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_ACCESS_KEY
     os.environ['AWS_SESSION_TOKEN'] = AWS_SESSION_TOKEN
@@ -42,6 +67,7 @@ def run_script():
     os.environ['DIR_REPORT'] = dir
     scripts = ["\\monitoreo_athena_metrics_auto.py", "\\monitoreo_documentDB_metrics_auto.py",
            "\\monitoreo_dynamodb_metrics_auto.py", "\\monitoreo_rds_metrics_auto.py"]
+    #scripts = ["\\monitoreo_dynamodb_metrics_auto.py"]
     for script in scripts:
         name_script = script
         script = current_directory + script
@@ -52,7 +78,10 @@ def run_script():
             log_text.insert(tk.END, f"El script {name_script} ha terminado correctamente.\n", "success")
         else:
             log_text.insert(tk.END, f"Error al ejecutar el script {name_script}.\n", "error")
-    log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")
+    log_text.insert(tk.END, f"##################FINALIZANDO METRICAS DE AMBIENTE {AWS_ENVIRONMENT}##################\n", "progress")  
+    
+    
+    
 '''   
 def run_script():
     global AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN, AWS_ENVIRONMENT, FECHA_INICIO, FECHA_FIN

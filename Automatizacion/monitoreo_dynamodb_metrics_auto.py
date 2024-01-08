@@ -27,7 +27,7 @@ f_date = ''
 
 regions = ["us-east-1", "us-east-2", "us-west-1", "us-west-2"] 
 
-output_path = 'C:/Users/mikeo/OneDrive/Documentos/Proyectos Mobility ADO/AWS/scripts_pyton_aws_inventarios/Automatizacion/'
+output_path = 'C:\\Users\\mikeo\\OneDrive\\Documentos\\Proyectos Mobility ADO\\AWS\\scripts_pyton_aws_inventarios\\Automatizacion\\'
 
 css_path = 'C:/Users/mikeo/OneDrive/Documentos/Proyectos Mobility ADO/AWS/scripts_pyton_aws_inventarios/metric_styles.css'
 
@@ -44,7 +44,7 @@ def save_metric_table_to_base64(metric_name, datapoints, rds_identifier):
     df = df.sort_values(by='Timestamp')
     plt.figure(figsize=(10, 6))
     plt.plot(df['Timestamp'], df['Average'], marker='o', linestyle='-', color='blue')
-    plt.title(f'Métrica: {metric_name} - RDS: {rds_identifier}')
+    plt.title(f'Métrica: {metric_name} - Table: {rds_identifier}')
     plt.xlabel('Timestamp')
     plt.ylabel('Valor promedio')
     plt.xticks(rotation=45)
@@ -160,6 +160,18 @@ if __name__ == "__main__":
     AWS_ENVIROMENT = os.environ['AWS_ENVIROMENT']
     i_date = os.environ['FECHA_INICIO']
     f_date = os.environ['FECHA_FIN']
+    output_path = output_path+os.environ['DIR_REPORT']
+    if 'DEV' in AWS_ENVIROMENT:
+        output_path  = output_path+'\\DynamoDB\\DEV\\'
+        print('Ambiente de producción (DEV)')
+    elif 'PROD' in AWS_ENVIROMENT:
+        output_path  = output_path+'\\DynamoDB\\PROD\\'
+        print('Ambiente de producción (PROD)')
+    elif 'TEST' in AWS_ENVIROMENT:
+        output_path  = output_path+'\\DynamoDB\\QA\\'
+        print('Ambiente de prueba (TEST)')
+    else:
+        print('Ambiente no reconocido')
     print('> Recuperacion de variables de ejecución completa...')
     print('> Iniciando generación de reportes...')
     main()
