@@ -17,7 +17,7 @@ def crea_dir(output_path):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
         print(f"Directorio '{output_path}' creado exitosamente.")
-        dir_serv = ["\\Athena", "\\DynamoDB","\\DocumentDB", "\\RDS"]
+        dir_serv = ["\\Athena", "\\DynamoDB","\\DocumentDB", "\\RDS","\\MongoDB"]
         dir_amb = ["\\DEV", "\\QA","\\PROD"]
         for dir_s in dir_serv: 
             serv_path  = output_path+dir_s
