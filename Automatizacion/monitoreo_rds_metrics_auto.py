@@ -6,6 +6,7 @@ import base64
 import matplotlib.pyplot as plt
 import io
 import pandas as pd
+import re
 '''
 #########################################################
 #By:           Jose Miguel Olguin Hernandez             #
@@ -31,7 +32,47 @@ ruta_imagen = "\\logo_movility.png"
 def read_css_file(css_path):
     with open(css_path, 'r') as css_file:
         return css_file.read()
+    
+def bytes_to_gb(bytes_size):
+    gb_size = bytes_size / (1024.0 ** 3)
+    print(f'Son {gb_size} GB')
+    return gb_size
 
+def evaluar_valor(tipo,valor,val_aux):
+    tipo = metric_names.index(tipo)+1
+    #valor = limpiar_y_convertir(valor)
+    print(f'EL VALOR: {valor}, tipo: {tipo}')
+    clase = ''
+    if tipo == 1:
+       print(f'Evaluando CPU')
+       clase = 'metric_good' if valor <= 70 else 'metric_warnig' if valor > 80 else 'metric_danger'
+    elif tipo == 2:
+       print(f'Evaluando Espacio en Disco {val_aux}')
+       hdd_pr = (bytes_to_gb(valor) / val_aux) * 100
+       print(f'Porcentaje HDD: {hdd_pr}')
+       clase = 'metric_good' if hdd_pr >= 80 else 'metric_warnig' if hdd_pr <= 30 else 'metric_danger'
+    elif tipo == 5 or tipo == 6:
+       print('Evaluando latencia')
+       clase = 'metric_good' if valor < 10 else 'metric_warnig' if valor > 11 else 'metric_danger' 
+    else:
+        print('No alerta')
+        clase = 'noclass'
+        
+    return f'class="{clase}"'
+    
+def limpiar_y_convertir(valor):
+    if not isinstance(valor, (str, bytes)):
+        # Manejar el caso en el que el valor no es una cadena o bytes
+        return 0.0
+    
+    valor_limpio = re.sub(r'[^0-9.]', '', valor)
+    
+    try:
+        return float(valor_limpio) if valor_limpio else 0.0
+    except ValueError:
+        # Manejar el caso en el que no se puede convertir a un número de punto flotante
+        return 0.0
+    
 def get_rds_metric(cloudwatch_client, instance_identifier, metric_name, start_time, end_time, period=300):
     start_time_str = start_time.strftime('%Y-%m-%dT%H:%M:%S')
     end_time_str = end_time.strftime('%Y-%m-%dT%H:%M:%S')
@@ -147,7 +188,7 @@ def generate_html_report(metric_data_dict, region,instance_data_dict, css_conten
                          {% for data in metric_data %}
                              <tr>
                                  <td>{{ data['Timestamp'] }}</td>
-                                 <td>{{ data['Average'] }}</td>
+                                 <td {{evaluar_valor(metric_name,data['Average'],value['AllocatedStorage'])}}>{{ data['Average'] }}</td>
                              </tr>
                          {% endfor %}
                         </tbody>
@@ -161,13 +202,12 @@ def generate_html_report(metric_data_dict, region,instance_data_dict, css_conten
         </html>
         """
         template = Template(template_str)
-        html_content = template.render(metric_data_dict=metric_data_dict, region=region,instance_data_dict=instance_data_dict, css_content=css_content,fecha_actual=fecha_actual,codigo_base64=codigo_base64,start_time=i_date,end_time=f_date)
+        html_content = template.render(metric_data_dict=metric_data_dict, region=region,instance_data_dict=instance_data_dict, css_content=css_content,fecha_actual=fecha_actual,codigo_base64=codigo_base64,start_time=i_date,end_time=f_date,evaluar_valor = evaluar_valor)
         f.write(html_content)
-
+        
+metric_names = ['CPUUtilization', 'FreeStorageSpace', 'ReadIOPS', 'WriteIOPS',
+                    'ReadLatency', 'WriteLatency', 'ReadThroughput', 'WriteThroughput']
 def main():
-    metric_names = ['CPUUtilization', 'FreeStorageSpace', 'ReadIOPS', 'WriteIOPS',
-                    'ReadLatency', 'WriteLatency', 'ReadThroughput', 'WriteThroughput', 'FreeStorageSpace']
-
     css_content = read_css_file(css_path)
 
     for region in aws_regions:

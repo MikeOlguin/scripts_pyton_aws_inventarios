@@ -9,7 +9,7 @@ from tkcalendar import DateEntry
 AWS_ACCESS_KEY_ID = ""
 AWS_SECRET_ACCESS_KEY = ""
 AWS_SESSION_TOKEN = ""
-AWS_ENVIRONMENT = "API-DEV"
+AWS_ENVIRONMENT = "SERV-TEST"
 FECHA_INICIO = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 FECHA_FIN = (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y')
 
@@ -17,7 +17,7 @@ def crea_dir(output_path):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
         print(f"Directorio '{output_path}' creado exitosamente.")
-        dir_serv = ["\\Athena", "\\DynamoDB","\\DocumentDB", "\\RDS","\\MongoDB"]
+        dir_serv = ["\\Athena", "\\DynamoDB","\\DocumentDB", "\\RDS","\\MongoDB","\\GoldenGate"]
         dir_amb = ["\\DEV", "\\QA","\\PROD"]
         for dir_s in dir_serv: 
             serv_path  = output_path+dir_s
@@ -66,8 +66,8 @@ def run_script():
     os.environ['FECHA_FIN'] = FECHA_FIN
     os.environ['DIR_REPORT'] = dir
     scripts = ["\\monitoreo_athena_metrics_auto.py", "\\monitoreo_documentDB_metrics_auto.py",
-           "\\monitoreo_dynamodb_metrics_auto.py", "\\monitoreo_rds_metrics_auto.py"]
-    #scripts = ["\\monitoreo_dynamodb_metrics_auto.py"]
+          "\\monitoreo_dynamodb_metrics_auto.py", "\\monitoreo_rds_metrics_auto.py"]
+    #scripts = ["\\monitoreo_documentDB_metrics_auto.py"]
     for script in scripts:
         name_script = script
         script = current_directory + script
@@ -158,7 +158,7 @@ AWS_SESSION_TOKEN_entry.grid(row=2, column=1, padx=5, pady=5)
 tk.Button(margin_frame, text="Limpiar", command=lambda: AWS_SESSION_TOKEN_entry.delete(0, tk.END)).grid(row=2, column=2)
 
 tk.Label(margin_frame, text="AWS_ENVIRONMENT:").grid(row=3, column=0, sticky="w")
-environments = ["API-DEV", "API-PROD", "API-TEST", "SERV-TEST", "DATA-DEV", "DATA-PROD", "DATA-TEST", "SERV-DEV", "SERV-PROD"]
+environments = ["SERV-TEST", "DATA-DEV", "DATA-PROD", "DATA-TEST","FGS-DEV","FGS-PROD","FGS-TEST","MONE-DEV", "MONE-PROD", "MONE-TEST","MONRE-DEV","MONRE-PROD","MONRE-TEST","SERV-DEV","SERV-PROD"]
 environment_combobox = ttk.Combobox(margin_frame, values=environments, state="readonly")
 environment_combobox.set(AWS_ENVIRONMENT)
 environment_combobox.grid(row=3, column=1, padx=5, pady=5)

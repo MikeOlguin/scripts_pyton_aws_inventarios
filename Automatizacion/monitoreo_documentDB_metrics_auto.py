@@ -36,6 +36,9 @@ def read_css_file(css_path):
         return css_file.read()
 
 def save_metric_table_to_base64(metric_name, datapoints, cluster_identifier):
+    if not datapoints:
+        print("El diccionario datapoints está vacío. No se puede generar la gráfica.")
+        return None
     df = pd.DataFrame(datapoints)
     df = df.sort_values(by='Timestamp')
     plt.figure(figsize=(10, 6))

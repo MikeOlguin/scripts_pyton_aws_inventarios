@@ -1,0 +1,47 @@
+[
+  {
+    "Namespace": "default",
+    "Name": "ggready-5cdb555946-vkmzs",
+    "CPU": "6",
+    "Requests": "(67%)",
+    "Limits": "(84%)",
+    "Memory": "50Gi",
+    "Age": "95d"
+  },
+  {
+    "Namespace": "kube-system",
+    "Name": "aws-node-z2w9x",
+    "CPU": "0",
+    "Requests": "(0%)",
+    "Limits": "(0%)",
+    "Memory": "0",
+    "Age": "107d"
+  },
+  {
+    "Namespace": "kube-system",
+    "Name": "coredns-647484dc8b-dfct8",
+    "CPU": "0",
+    "Requests": "(0%)",
+    "Limits": "(0%)",
+    "Memory": "170Mi",
+    "Age": "107d"
+  },
+  {
+    "Namespace": "kube-system",
+    "Name": "efs-csi-node-p7q29",
+    "CPU": "0",
+    "Requests": "(0%)",
+    "Limits": "(0%)",
+    "Memory": "0",
+    "Age": "107d"
+  },
+  {
+    "Namespace": "kube-system",
+    "Name": "kube-proxy-7mqdp",
+    "CPU": "0",
+    "Requests": "(0%)",
+    "Limits": "(0%)",
+    "Memory": "0",
+    "Age": "107d"
+  }
+]

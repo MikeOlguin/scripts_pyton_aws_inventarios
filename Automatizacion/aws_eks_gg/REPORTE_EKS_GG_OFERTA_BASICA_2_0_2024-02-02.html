@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Reporte de monitoreo Golden OFERTA_BASICA_2_0</title>
+    <style>
+        h1 {
+            color: purple;
+            text-decoration: underline;
+        }
+
+        .inlineblock {
+            display: inline-block;
+        }
+
+        .logo {
+            float: right;
+        }
+
+        .showMetrics {
+            cursor: pointer;
+        }
+
+        .showMetrics:hover {
+            color: red;
+        }
+
+        h2,
+        h3 {
+            color: maroon;
+            text-decoration: underline;
+        }
+
+        .title_small {
+            color: blue;
+        }
+
+        .title_micro {
+            color: crimson;
+        }
+
+        .datagrid table {
+            border-collapse: collapse;
+            text-align: left;
+            width: 100%;
+        }
+
+        .datagrid {
+            font: normal 12px/150% Arial, Helvetica, sans-serif;
+            background: #fff;
+            overflow: hidden;
+            border: 1px solid #652299;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        .datagrid table td,
+        .datagrid table th {
+            padding: 3px 10px;
+        }
+
+        .datagrid table thead th {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #652299), color-stop(1, #4D1A75));
+            background: -moz-linear-gradient(center top, #652299 5%, #4D1A75 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#652299', endColorstr='#4D1A75');
+            background-color: #652299;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: bold;
+            border-left: 1px solid #714399;
+        }
+
+        .datagrid table thead th:first-child {
+            border: none;
+        }
+
+        .datagrid table tbody td {
+            color: #4D1A75;
+            border-left: 1px solid #E7BDFF;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .datagrid table tbody .alt td {
+            background: #F4E3FF;
+            color: #4D1A75;
+        }
+
+        .datagrid table tbody td:first-child {
+            border-left: none;
+        }
+
+        .datagrid table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .datagrid table tfoot td div {
+            border-top: 1px solid #652299;
+            background: #F4E3FF;
+        }
+
+        .datagrid table tfoot td {
+            padding: 0;
+            font-size: 12px
+        }
+
+        .datagrid table tfoot td div {
+            padding: 2px;
+        }
+
+        .datagrid table tfoot td ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: right;
+        }
+
+        .datagrid table tfoot li {
+            display: inline;
+        }
+
+        .datagrid table tfoot li a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 1px;
+            color: #FFFFFF;
+            border: 1px solid #652299;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #652299), color-stop(1, #4D1A75));
+            background: -moz-linear-gradient(center top, #652299 5%, #4D1A75 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#652299', endColorstr='#4D1A75');
+            background-color: #652299;
+        }
+
+        .datagrid table tfoot ul.active,
+        .datagrid table tfoot ul a:hover {
+            text-decoration: none;
+            border-color: #4D1A75;
+            color: #FFFFFF;
+            background: none;
+            background-color: #652299;
+        }
+
+        .available {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            background: #5cb85c;
+        }
+
+        .unavailable {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            background: red;
+        }
+
+        .alert {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            background: yellow;
+        }
+
+        .resaltar {
+            color: red;
+        }
+
+        .rds-table tr td:first-child {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #652299), color-stop(1, #4D1A75));
+            background: -moz-linear-gradient(center top, #652299 5%, #4D1A75 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#652299', endColorstr='#4D1A75');
+            background-color: #652299;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: bold;
+            border-left: 1px solid #714399;
+        }
+
+        .rds-table td,
+        .rds-table th {
+            padding: 3px 10px;
+        }
+
+        .graphic_metric img {
+            width: 50%;
+        }
+
+        .flecha_show {
+            color: black;
+        }
+
+        .colspan_mark {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #992222), color-stop(1, #6b1111)) !important;
+            background: -moz-linear-gradient(center top, #652299 5%, #4D1A75 100%) !important;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#652299', endColorstr='#4D1A75') !important;
+            background-color: #6b1111 !important;
+            color: #FFFFFF;
+            font-size: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-left: 1px solid #714399 !important;
+        }
+
+        .metric_good {
+            background: rgb(0, 116, 48);
+            background: linear-gradient(90deg, rgba(0, 116, 48, 1) 0%, rgba(42, 150, 38, 1) 32%, rgba(7, 213, 100, 1) 100%);
+            color: white !important;
+            font-size: 1.5em !important;
+            font-weight: bold;
+        }
+
+        .metric_warnig {
+            background: rgb(224, 211, 1);
+            background: linear-gradient(90deg, rgba(224, 211, 1, 1) 0%, rgba(255, 249, 41, 1) 33%, rgba(250, 248, 166, 1) 100%);
+        }
+
+        .metric_danger {
+            background: rgb(224, 1, 1);
+            background: linear-gradient(90deg, rgba(224, 1, 1, 1) 0%, rgba(255, 105, 41, 1) 33%, rgba(255, 230, 213, 1) 100%);
+        }
+
+        .terminal {
+            background: black !important;
+            width: 40%;
+            color: white;
+            padding: 0.5em;
+        }
+
+        #lista3 {
+            counter-reset: li;
+            list-style: none;
+            list-style: circle;
+            font: 15px 'trebuchet MS', 'lucida sans';
+            padding: 0;
+            margin-bottom: 4em;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+        }
+
+        #lista3 ol {
+            margin: 0 0 0 2em;
+        }
+
+        #lista3 li {
+            position: relative;
+            display: block;
+            padding: .4em .4em .4em .8em;
+            padding: .4em;
+            margin: .5em 0 .5em 2.5em;
+            background: #ddd;
+            color: #444;
+            text-decoration: none;
+            transition: all .3s ease-out;
+        }
+
+        #lista3 li:hover {
+            background: #eee;
+        }
+
+        #lista3 li:before {
+            content: "+ ";
+            counter-increment: li;
+            position: absolute;
+            left: -2.5em;
+            top: 50%;
+            margin-top: -1em;
+            background: #fa8072;
+            height: 2em;
+            width: 2em;
+            line-height: 2em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #lista3 b {
+            color: lightseagreen;
+            font-size: 16px;
+        }
+
+        #lista3 li:after {
+            position: absolute;
+            content: '';
+            border: .5em solid transparent;
+            left: -1em;
+            top: 50%;
+            margin-top: -.5em;
+            transition: all .3s ease-out;
+        }
+
+        #lista3 li:hover:after {
+            left: -.5em;
+            border-left-color: #fa8072;
+        }
+
+        .container {
+            padding: 3em;
+        }
+
+        .preheader {
+            text-align: center;
+            font-size: 2em !important;
+        }
+
+        .valor_good {
+            font-weight: bold !important;
+            background: #a9ffa9 !important;
+        }
+
+        .valor_bad {
+            font-weight: bold !important;
+            background: red !important;
+        }
+
+        .lb_alert {
+            color: black !important;
+            font-weight: bold;
+            padding: 4px;
+            border-radius: 15px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <h1 class='inlineblock'>Reporte de monitoreo EKS-GoldeGate</h1>
+        <img class='inlineblock logo'
+            src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAMgAAABkCAYAAADDhn8LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjVDMjlGRDM2RThGMTFFODlGOTVERkRFNzZBODU5RTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjVDMjlGRDQ2RThGMTFFODlGOTVERkRFNzZBODU5RTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGNUMyOUZEMTZFOEYxMUU4OUY5NURGREU3NkE4NTlFNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGNUMyOUZEMjZFOEYxMUU4OUY5NURGREU3NkE4NTlFNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjRFQrwAABjHSURBVHja7F15nFTV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"
+            alt="Logo MADO" />
+        <h3><b class="resaltar">FECHA DE CONSULTA:</b> 2024-02-02</h3>
+        <h3><b class="resaltar">PROYECTO:</b> OFERTA_BASICA_2_0</h3>
+        <h3><b class="resaltar">AMBIENTE:</b> PRD</h3>
+        <h3><b class="resaltar">REGION:</b> US-EAST-2</h3>
+        <h2>Estatus de GoldeGate</h2>
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th class='preheader' colspan='5'>info all</th>
+                    </tr>
+                    <tr>
+
+
+                        <th>Program</th>
+
+                        <th>Status</th>
+
+                        <th>Group</th>
+
+                        <th>Lag at Chkpt</th>
+
+                        <th>Time Since Chkpt</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+
+                        <td>MANAGER</td>
+
+                        <td>RUNNING</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PBOL</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:06</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PCORR</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:07</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PDWH</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PDWHOTD</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:08</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PGCAT</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:09</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PJDE</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>POCAT</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:03</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>POTD</td>
+
+                        <td class="valor_good">00:00:06</td>
+
+                        <td class="valor_good">00:00:09</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>EXTRACT</td>
+
+                        <td>RUNNING</td>
+
+                        <td>PVCAT</td>
+
+                        <td class="valor_good">00:00:00</td>
+
+                        <td class="valor_good">00:00:09</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div></br>
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th class='preheader' colspan='6'>send mgr getportinfo <label
+                                class="valor_good lb_alert">Puertos completos</label></th>
+                    </tr>
+                    <tr>
+
+
+                        <th>Entry</th>
+
+                        <th>Port</th>
+
+                        <th>Error</th>
+
+                        <th>Process</th>
+
+                        <th>Assigned</th>
+
+                        <th>Program</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+
+                        <td>0</td>
+
+                        <td>30010</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7560</td>
+
+                        <td>2023/11/19 12:40:15</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>1</td>
+
+                        <td>30011</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>59</td>
+
+                        <td>2023/10/29 02:51:58</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>2</td>
+
+                        <td>30012</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18938</td>
+
+                        <td>2024/01/25 09:45:07</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>3</td>
+
+                        <td>30013</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18942</td>
+
+                        <td>2024/01/25 09:45:08</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>4</td>
+
+                        <td>30014</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18946</td>
+
+                        <td>2024/01/25 09:45:14</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>5</td>
+
+                        <td>30015</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18950</td>
+
+                        <td>2024/01/25 09:45:16</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>6</td>
+
+                        <td>30016</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18954</td>
+
+                        <td>2024/01/25 09:45:29</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>7</td>
+
+                        <td>30017</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18958</td>
+
+                        <td>2024/01/25 09:45:31</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>8</td>
+
+                        <td>30018</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7619</td>
+
+                        <td>2023/11/19 12:46:13</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>9</td>
+
+                        <td>30019</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7623</td>
+
+                        <td>2023/11/19 12:46:13</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>10</td>
+
+                        <td>30020</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7625</td>
+
+                        <td>2023/11/19 12:46:13</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>11</td>
+
+                        <td>30021</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7626</td>
+
+                        <td>2023/11/19 12:46:13</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>12</td>
+
+                        <td>30022</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7627</td>
+
+                        <td>2023/11/19 12:46:14</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>13</td>
+
+                        <td>30023</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7628</td>
+
+                        <td>2023/11/19 12:46:14</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>14</td>
+
+                        <td>30024</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7629</td>
+
+                        <td>2023/11/19 12:46:14</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>15</td>
+
+                        <td>30025</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>7668</td>
+
+                        <td>2023/11/19 14:23:12</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>16</td>
+
+                        <td>30026</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18962</td>
+
+                        <td>2024/01/25 09:45:34</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>17</td>
+
+                        <td>30027</td>
+
+                        <td class="valor_good">0</td>
+
+                        <td>18229</td>
+
+                        <td>2024/01/21 09:31:06</td>
+
+                        <td>SERVER</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div></br>
+        <h3 class="terminal">Commad: kubectl get all</h3>
+
+
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+
+                        <th>NAME</th>
+
+                        <th>READY</th>
+
+                        <th>STATUS</th>
+
+                        <th>RESTARTS</th>
+
+                        <th>AGE</th>
+
+                        <th>IP</th>
+
+                        <th>NODE</th>
+
+                        <th>NOMINATED</th>
+
+                        <th>NODE.1</th>
+
+                        <th>READINESS</th>
+
+                        <th>GATES</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>pod/ggready-5cdb555946-vkmzs</td>
+
+                        <td>1/1</td>
+
+                        <td class="valor_good">Running</td>
+
+                        <td>0</td>
+
+                        <td>96d</td>
+
+                        <td>172.26.24.8</td>
+
+                        <td>ip-172-26-24-56.us-east-2.compute.internal</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>None</td>
+
+                        <td>None</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div></br>
+
+
+
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+
+                        <th>NAME</th>
+
+                        <th>TYPE</th>
+
+                        <th>CLUSTER-IP</th>
+
+                        <th>EXTERNAL-IP</th>
+
+                        <th>PORT(S)</th>
+
+                        <th>AGE</th>
+
+                        <th>SELECTOR</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>service/ggready-svc</td>
+
+                        <td>LoadBalancer</td>
+
+                        <td>10.100.16.62</td>
+
+                        <td>aeed20349a51d41a1bf465b913251eb8-2cc18bb9e3122aa0.elb.us-east-2.amazonaws.com</td>
+
+                        <td>30009:30009/TCP,30010:30010/TCP,30011:30011/TCP,30012:30012/TCP,30013:30013/TCP,30014:30014/TCP,30015:30015/TCP,30016:30016/TCP,30017:30017/TCP,30018:30018/TCP,30019:30019/TCP,30020:30020/TCP,30021:30021/TCP,30022:30022/TCP,30023:30023/TCP,30024:30024/TCP,30025:30025/TCP,30026:30026/TCP,30027:30027/TCP,30028:30028/TCP,30029:30029/TCP,30030:30030/TCP,30031:30031/TCP,30032:30032/TCP,30033:30033/TCP,30034:30034/TCP,30035:30035/TCP,30036:30036/TCP,30037:30037/TCP,30038:30038/TCP,30039:30039/TCP,30040:30040/TCP,30041:30041/TCP,30042:30042/TCP,30043:30043/TCP,30044:30044/TCP,30045:30045/TCP,30046:30046/TCP,30047:30047/TCP,30048:30048/TCP,30049:30049/TCP,30050:30050/TCP
+                        </td>
+
+                        <td>106d</td>
+
+                        <td>app=ggready</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div></br>
+
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+
+                        <th>NAME</th>
+
+                        <th>TYPE</th>
+
+                        <th>CLUSTER-IP</th>
+
+                        <th>EXTERNAL-IP</th>
+
+                        <th>PORT(S)</th>
+
+                        <th>AGE</th>
+
+                        <th>SELECTOR</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>service/kubernetes</td>
+
+                        <td>ClusterIP</td>
+
+                        <td>10.100.0.1</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>443/TCP</td>
+
+                        <td>109d</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div></br>
+
+
+
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+
+                        <th>NAME</th>
+
+                        <th>READY</th>
+
+                        <th>UP-TO-DATE</th>
+
+                        <th>AVAILABLE</th>
+
+                        <th>AGE</th>
+
+                        <th>CONTAINERS</th>
+
+                        <th>IMAGES</th>
+
+                        <th>SELECTOR</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>deployment.apps/ggready</td>
+
+                        <td>1/1</td>
+
+                        <td>1</td>
+
+                        <td class="valor_good">1</td>
+
+                        <td>96d</td>
+
+                        <td>ggready</td>
+
+                        <td>753265360355.dkr.ecr.us-east-2.amazonaws.com/madoawsprdecrdtlue202:v1</td>
+
+                        <td>app=ggready</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div></br>
+
+
+
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+
+                        <th>NAME</th>
+
+                        <th>DESIRED</th>
+
+                        <th>CURRENT</th>
+
+                        <th>READY</th>
+
+                        <th>AGE</th>
+
+                        <th>CONTAINERS</th>
+
+                        <th>IMAGES</th>
+
+                        <th>SELECTOR</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>replicaset.apps/ggready-5cdb555946</td>
+
+                        <td>1</td>
+
+                        <td>1</td>
+
+                        <td class="valor_good">1</td>
+
+                        <td>96d</td>
+
+                        <td>ggready</td>
+
+                        <td>753265360355.dkr.ecr.us-east-2.amazonaws.com/madoawsprdecrdtlue202:v1</td>
+
+                        <td>app=ggready,pod-template-hash=5cdb555946</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div></br>
+
+
+        <h3 class="terminal">Commad: kubectl get nodes</h3>
+
+        <div class="datagrid">
+            <table border="1">
+                <thead>
+                    <tr>
+
+
+                        <th>NAME</th>
+
+                        <th>STATUS</th>
+
+                        <th>ROLES</th>
+
+                        <th>AGE</th>
+
+                        <th>VERSION</th>
+
+                        <th>INTERNAL-IP</th>
+
+                        <th>EXTERNAL-IP</th>
+
+                        <th>OS-IMAGE</th>
+
+                        <th>KERNEL-VERSION</th>
+
+                        <th>CONTAINER-RUNTIME</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+
+                        <td>ip-172-26-24-135.us-east-2.compute.internal</td>
+
+                        <td>Ready</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>109d</td>
+
+                        <td>v1.27.5-eks-43840fb</td>
+
+                        <td>172.26.24.135</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>Amazon Linux 2</td>
+
+                        <td>5.10.192-183.736.amzn2.x86_64</td>
+
+                        <td>containerd://1.6.19</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>ip-172-26-24-56.us-east-2.compute.internal</td>
+
+                        <td>Ready</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>109d</td>
+
+                        <td>v1.27.5-eks-43840fb</td>
+
+                        <td>172.26.24.56</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>Amazon Linux 2</td>
+
+                        <td>5.10.192-183.736.amzn2.x86_64</td>
+
+                        <td>containerd://1.6.19</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>ip-172-26-24-79.us-east-2.compute.internal</td>
+
+                        <td>Ready</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>109d</td>
+
+                        <td>v1.27.5-eks-43840fb</td>
+
+                        <td>172.26.24.79</td>
+
+                        <td>
+                            <none>
+                        </td>
+
+                        <td>Amazon Linux 2</td>
+
+                        <td>5.10.192-183.736.amzn2.x86_64</td>
+
+                        <td>containerd://1.6.19</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div></br>
+
+        <h3 class="terminal">Commad: kubectl describe node</h3>
+        <ul id="lista3">
+            <li><b>Name:</b> ip-172-26-24-56.us-east-2.compute.internal</li>
+            <li><b>Labels:</b>
+                <ul>
+
+                    <li><b>beta.kubernetes.io/arch:</b> amd64</li>
+
+                    <li><b>beta.kubernetes.io/instance-type:</b> m5.4xlarge</li>
+
+                    <li><b>beta.kubernetes.io/os:</b> linux</li>
+
+                    <li><b>eks.amazonaws.com/capacityType:</b> ON_DEMAND</li>
+
+                    <li><b>eks.amazonaws.com/nodegroup:</b> EKSNodegroup-9tUzlL1q1OA8</li>
+
+                    <li><b>eks.amazonaws.com/nodegroup-image:</b> ami-03412347265cf2f1a</li>
+
+                    <li><b>failure-domain.beta.kubernetes.io/region:</b> us-east-2</li>
+
+                    <li><b>failure-domain.beta.kubernetes.io/zone:</b> us-east-2a</li>
+
+                    <li><b>k8s.io/cloud-provider-aws:</b> 31a4424656e72b02fac6e66cd881fabf</li>
+
+                    <li><b>kubernetes.io/arch:</b> amd64</li>
+
+                    <li><b>kubernetes.io/hostname:</b> ip-172-26-24-56.us-east-2.compute.internal</li>
+
+                    <li><b>kubernetes.io/os:</b> linux</li>
+
+                    <li><b>node.kubernetes.io/instance-type:</b> m5.4xlarge</li>
+
+                    <li><b>topology.kubernetes.io/region:</b> us-east-2</li>
+
+                    <li><b>topology.kubernetes.io/zone:</b> us-east-2a</li>
+
+                </ul>
+            </li>
+            <li><b>Annotations:</b>
+                <ul>
+
+                    <li><b>alpha.kubernetes.io/provided-node-ip:</b> 172.26.24.56</li>
+
+                    <li><b>csi.volume.kubernetes.io/nodeid:</b> {"efs.csi.aws.com":"i-0b47be9d8cff85745"}</li>
+
+                    <li><b>node.alpha.kubernetes.io/ttl:</b> 0</li>
+
+                    <li><b>volumes.kubernetes.io/controller-managed-attach-detach:</b> true</li>
+
+                </ul>
+            </li>
+            <li><b>CreationTimestamp:</b> Mon, 16 Oct 2023 17:04:50 +0000</li>
+            <li><b>Conditions:</b>
+
+                <ul>
+
+                    <li><b>lastHeartbeatTime:</b> Fri, 02 Feb 2024 20:02:01 +0000</li>
+
+                    <li><b>lastTransitionTime:</b> Mon, 16 Oct 2023 17:04:50 +0000</li>
+
+                    <li><b>message:</b> kubelet has sufficient memory available</li>
+
+                    <li><b>reason:</b> KubeletHasSufficientMemory</li>
+
+                    <li><b>status:</b> False</li>
+
+                    <li><b>type:</b> MemoryPressure</li>
+
+                </ul></br>
+
+                <ul>
+
+                    <li><b>lastHeartbeatTime:</b> Fri, 02 Feb 2024 20:02:01 +0000</li>
+
+                    <li><b>lastTransitionTime:</b> Mon, 16 Oct 2023 17:04:50 +0000</li>
+
+                    <li><b>message:</b> kubelet has no disk pressure</li>
+
+                    <li><b>reason:</b> KubeletHasNoDiskPressure</li>
+
+                    <li><b>status:</b> False</li>
+
+                    <li><b>type:</b> DiskPressure</li>
+
+                </ul></br>
+
+                <ul>
+
+                    <li><b>lastHeartbeatTime:</b> Fri, 02 Feb 2024 20:02:01 +0000</li>
+
+                    <li><b>lastTransitionTime:</b> Mon, 16 Oct 2023 17:04:50 +0000</li>
+
+                    <li><b>message:</b> kubelet has sufficient PID available</li>
+
+                    <li><b>reason:</b> KubeletHasSufficientPID</li>
+
+                    <li><b>status:</b> False</li>
+
+                    <li><b>type:</b> PIDPressure</li>
+
+                </ul></br>
+
+                <ul>
+
+                    <li><b>lastHeartbeatTime:</b> Fri, 02 Feb 2024 20:02:01 +0000</li>
+
+                    <li><b>lastTransitionTime:</b> Mon, 16 Oct 2023 17:04:57 +0000</li>
+
+                    <li><b>message:</b> kubelet is posting ready status</li>
+
+                    <li><b>reason:</b> KubeletReady</li>
+
+                    <li><b>status:</b> True</li>
+
+                    <li><b>type:</b> Ready</li>
+
+                </ul></br>
+
+            </li>
+            <li><b>Addresses:</b>
+                <ul>
+
+
+                    <li><b>address:</b> 172.26.24.56</li>
+
+                    <li><b>type:</b> InternalIP</li>
+
+
+
+                    <li><b>address:</b> ip-172-26-24-56.us-east-2.compute.internal</li>
+
+                    <li><b>type:</b> InternalDNS</li>
+
+
+
+                    <li><b>address:</b> ip-172-26-24-56.us-east-2.compute.internal</li>
+
+                    <li><b>type:</b> Hostname</li>
+
+
+                </ul>
+            </li>
+            <li><b>Capacity:</b>
+                <ul>
+
+                    <li><b>cpu:</b> 16</li>
+
+                    <li><b>ephemeral-storage:</b> 20959212Ki</li>
+
+                    <li><b>hugepages-1Gi:</b> 0</li>
+
+                    <li><b>hugepages-2Mi:</b> 0</li>
+
+                    <li><b>memory:</b> 65021468Ki</li>
+
+                    <li><b>pods:</b> 110</li>
+
+                </ul>
+            </li>
+            <li><b>Allocatable:</b>
+                <ul>
+
+                    <li><b>cpu:</b> 15890m</li>
+
+                    <li><b>ephemeral-storage:</b> 18242267924</li>
+
+                    <li><b>hugepages-1Gi:</b> 0</li>
+
+                    <li><b>hugepages-2Mi:</b> 0</li>
+
+                    <li><b>memory:</b> 62022172Ki</li>
+
+                    <li><b>pods:</b> 110</li>
+
+                </ul>
+            </li>
+            <li><b>System Info:</b>
+                <ul>
+
+                    <li><b>architecture:</b> amd64</li>
+
+                    <li><b>bootID:</b> fe273c93-b6b6-4914-acee-ce99082b7bed</li>
+
+                    <li><b>containerRuntimeVersion:</b> containerd://1.6.19</li>
+
+                    <li><b>kernelVersion:</b> 5.10.192-183.736.amzn2.x86_64</li>
+
+                    <li><b>kubeProxyVersion:</b> v1.27.5-eks-43840fb</li>
+
+                    <li><b>kubeletVersion:</b> v1.27.5-eks-43840fb</li>
+
+                    <li><b>machineID:</b> ec281e49deebe73b18deb88e288b1406</li>
+
+                    <li><b>operatingSystem:</b> linux</li>
+
+                    <li><b>osImage:</b> Amazon Linux 2</li>
+
+                    <li><b>systemUUID:</b> ec281e49-deeb-e73b-18de-b88e288b1406</li>
+
+                </ul>
+            </li>
+            <li><b>Non-terminated Pods:</b>
+                <ul>
+                    <div class="datagrid">
+                        <table border="1">
+                            <thead>
+                                <tr>
+
+
+                                    <th>Namespace</th>
+
+                                    <th>Name</th>
+
+                                    <th>CPU</th>
+
+                                    <th>Requests</th>
+
+                                    <th>Limits</th>
+
+                                    <th>Memory</th>
+
+                                    <th>Age</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+
+                                    <td>default</td>
+
+                                    <td>ggready-5cdb555946-vkmzs</td>
+
+                                    <td>6</td>
+
+                                    <td>(67%)</td>
+
+                                    <td>(84%)</td>
+
+                                    <td>50Gi</td>
+
+                                    <td>96d</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>kube-system</td>
+
+                                    <td>aws-node-z2w9x</td>
+
+                                    <td>0</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>0</td>
+
+                                    <td>109d</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>kube-system</td>
+
+                                    <td>coredns-647484dc8b-dfct8</td>
+
+                                    <td>0</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>170Mi</td>
+
+                                    <td>109d</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>kube-system</td>
+
+                                    <td>efs-csi-node-p7q29</td>
+
+                                    <td>0</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>0</td>
+
+                                    <td>109d</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>kube-system</td>
+
+                                    <td>kube-proxy-7mqdp</td>
+
+                                    <td>0</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>(0%)</td>
+
+                                    <td>0</td>
+
+                                    <td>109d</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div></br>
+                </ul>
+            </li>
+            <li><b>Allocated resources:</b>
+                <ul>
+                    <div class="datagrid">
+                        <table border="1">
+                            <thead>
+                                <tr>
+
+
+                                    <th>Resource</th>
+
+                                    <th>Requests</th>
+
+                                    <th>Limits</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+
+                                    <td>cpu</td>
+
+                                    <td>6225m</td>
+
+                                    <td>(39%)</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>memory</td>
+
+                                    <td>41030Mi</td>
+
+                                    <td>(67%)</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>ephemeral-storage</td>
+
+                                    <td>0</td>
+
+                                    <td>(0%)</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>hugepages-1Gi</td>
+
+                                    <td>0</td>
+
+                                    <td>(0%)</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div></br>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

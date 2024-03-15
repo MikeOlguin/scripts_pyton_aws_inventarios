@@ -1,0 +1,23 @@
+[
+    {
+      "Resource": "cpu",
+      "Requests": "6225m",
+      "Limits": "(39%)"
+    },
+    {
+      "Resource": "memory",
+      "Requests": "41030Mi",
+      "Limits": "(67%)"
+    },
+    {
+      "Resource": "ephemeral-storage",
+      "Requests": "0",
+      "Limits": "(0%)"
+    },
+    {
+      "Resource": "hugepages-1Gi",
+      "Requests": "0",
+      "Limits": "(0%)"
+    }
+  ]
+  

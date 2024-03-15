@@ -1,0 +1,57 @@
+{"Table_1": [
+        {
+            "NAME": "pod\\/ggready-5cdb555946-vkmzs",
+            "READY": "1\\/1",
+            "STATUS": "Running",
+            "RESTARTS": 0,
+            "AGE": "93d",
+            "IP": "172.26.24.8",
+            "NODE": "ip-172-26-24-56.us-east-2.compute.internal",
+            "NOMINATED": "<none>",
+            "NODE.1": "<none>",
+            "READINESS": null,
+            "GATES": null
+        }
+    ], "Table_2": [
+        {
+            "NAME": "service\\/ggready-svc",
+            "TYPE": "LoadBalancer",
+            "CLUSTER-IP": "10.100.16.62",
+            "EXTERNAL-IP": "aeed20349a51d41a1bf465b913251eb8-2cc18bb9e3122aa0.elb.us-east-2.amazonaws.com",
+            "PORT(S)": "30009:30009\\/TCP,30010:30010\\/TCP,30011:30011\\/TCP,30012:30012\\/TCP,30013:30013\\/TCP,30014:30014\\/TCP,30015:30015\\/TCP,30016:30016\\/TCP,30017:30017\\/TCP,30018:30018\\/TCP,30019:30019\\/TCP,30020:30020\\/TCP,30021:30021\\/TCP,30022:30022\\/TCP,30023:30023\\/TCP,30024:30024\\/TCP,30025:30025\\/TCP,30026:30026\\/TCP,30027:30027\\/TCP,30028:30028\\/TCP,30029:30029\\/TCP,30030:30030\\/TCP,30031:30031\\/TCP,30032:30032\\/TCP,30033:30033\\/TCP,30034:30034\\/TCP,30035:30035\\/TCP,30036:30036\\/TCP,30037:30037\\/TCP,30038:30038\\/TCP,30039:30039\\/TCP,30040:30040\\/TCP,30041:30041\\/TCP,30042:30042\\/TCP,30043:30043\\/TCP,30044:30044\\/TCP,30045:30045\\/TCP,30046:30046\\/TCP,30047:30047\\/TCP,30048:30048\\/TCP,30049:30049\\/TCP,30050:30050\\/TCP",
+            "AGE": "103d",
+            "SELECTOR": "app=ggready"
+        },
+        {
+            "NAME": "service\\/kubernetes",
+            "TYPE": "ClusterIP",
+            "CLUSTER-IP": "10.100.0.1",
+            "EXTERNAL-IP": "<none>",
+            "PORT(S)": "443\\/TCP",
+            "AGE": "106d",
+            "SELECTOR": "<none>"
+        }
+    ], "Table_3": [
+        {
+            "NAME": "deployment.apps\\/ggready",
+            "READY": "1\\/1",
+            "UP-TO-DATE": 1,
+            "AVAILABLE": 1,
+            "AGE": "93d",
+            "CONTAINERS": "ggready",
+            "IMAGES": "753265360355.dkr.ecr.us-east-2.amazonaws.com\\/madoawsprdecrdtlue202:v1",
+            "SELECTOR": "app=ggready"
+        }
+    ], "Table_4": [
+        {
+            "NAME": "replicaset.apps\\/ggready-5cdb555946",
+            "DESIRED": 1,
+            "CURRENT": 1,
+            "READY": 1,
+            "AGE": "93d",
+            "CONTAINERS": "ggready",
+            "IMAGES": "753265360355.dkr.ecr.us-east-2.amazonaws.com\\/madoawsprdecrdtlue202:v1",
+            "SELECTOR": "app=ggready,pod-template-hash=5cdb555946"
+        }
+    ]
+}

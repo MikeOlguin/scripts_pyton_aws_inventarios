@@ -1,0 +1,72 @@
+[
+    {
+        "Program": "MANAGER",
+        "Status": "RUNNING",
+        "Group": "<none>",
+        "Lag at Chkpt": "<none>",
+        "Time Since Chkpt": "<none>"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PBOL",
+        "Lag at Chkpt": "00:00:07",
+        "Time Since Chkpt": "00:00:01"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PCORR",
+        "Lag at Chkpt": "00:00:06",
+        "Time Since Chkpt": "00:00:00"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PDWH",
+        "Lag at Chkpt": "00:00:08",
+        "Time Since Chkpt": "00:00:05"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PDWHOTD",
+        "Lag at Chkpt": "00:00:00",
+        "Time Since Chkpt": "00:00:06"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PGCAT",
+        "Lag at Chkpt": "00:00:00",
+        "Time Since Chkpt": "00:00:06"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PJDE",
+        "Lag at Chkpt": "00:00:06",
+        "Time Since Chkpt": "00:00:01"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "POCAT",
+        "Lag at Chkpt": "00:00:00",
+        "Time Since Chkpt": "00:00:04"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "POTD",
+        "Lag at Chkpt": "00:00:00",
+        "Time Since Chkpt": "00:00:03"
+    },
+    {
+        "Program": "EXTRACT",
+        "Status": "RUNNING",
+        "Group": "PVCAT",
+        "Lag at Chkpt": "00:00:00",
+        "Time Since Chkpt": "00:00:09"
+    }
+]
