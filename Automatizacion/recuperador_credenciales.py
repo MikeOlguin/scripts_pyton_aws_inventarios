@@ -10,7 +10,7 @@ URL = "https://mobilityado.awsapps.com/start/#/?tab=accounts";
 ELEMENTS = {'ELEMENT0':{'ELEMENT':'//strong[contains(.,"AWS_ACCOUNT")]','SELECTOR':'XPATH','ACCTION':1}, 'ELEMENT1':{'ELEMENT':'//a[contains(.,"Access keys")]','SELECTOR':'XPATH','ACCTION':1}, 'ELEMENT2':{'ELEMENT':'//div[4]/div/div[2]/div/div[2]/div/div[2]/div/div/input','SELECTOR':'XPATH','ACCTION':3,'VALUE':'ACCESS_KEY_ID'},'ELEMENT3':{'ELEMENT':'//div[4]/div/div[2]/div/div[3]/div/div[2]/div/div/input','SELECTOR':'XPATH','ACCTION':3,'VALUE':'SECRET_ACCESS_KEY'},'ELEMENT4':{'ELEMENT':'//div[4]/div/div[2]/div/div[4]/div/div[2]/div/div/input','SELECTOR':'XPATH','ACCTION':3,'VALUE':'SESSION_TOCKEN'},'ELEMENT5':{'ELEMENT':'awsui_dismiss-control_1d2i7_1mjvw_381','SELECTOR':'CLASS','ACCTION':1},'ELEMENT6':{'ELEMENT':'//strong[contains(.,"AWS_ACCOUNT")]','SELECTOR':'XPATH','ACCTION':1}}
 ACCOUNTS = [ {'ACCOUNT':'AWS-Servicios-Test','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Data-Dev','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Data-Prod','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Data-Test','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'fgs-dev','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'fgs-Prod','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'fgs-test','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Mone-Dev','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Mone-Prod','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Mone-test','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'MoneRepo-Dev','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'MoneRepo-Prod','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'MoneRepo-Test','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Servicios-Dev','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False}, {'ACCOUNT':'Servicios-Prod','ACCESS_KEY_ID':'','SECRET_ACCESS_KEY':'','SESSION_TOCKEN':'','GET':False} ]
 IS_PRINT = False
-sandbox_enabled = False
+sandbox_enabled = True
 
 def print_task(msg):
     if IS_PRINT:
@@ -34,7 +34,7 @@ def findElement(driver, element, selector):
         return driver.find_element(By.XPATH, element)
     return None
 
-def getCredencialesAWS(user_input,pass_input,url_imput):
+def getCredencialesAWS(user_input,pass_input,url_input,code_input):
     options = Options()
     if sandbox_enabled:
         print('Sandbox habilitado')
@@ -47,7 +47,7 @@ def getCredencialesAWS(user_input,pass_input,url_imput):
     options.add_argument('--start-maximized')  
     driver = webdriver.Chrome(options=options)
     try:
-       driver.get(url_imput)
+       driver.get(url_input)
        elemento = findElement(driver, 'awsui-input-0', 'ID')
        elemento.send_keys(user_input)
        elemento = findElement(driver, '//awsui-button[@id="username-submit-button"]/button', 'XPATH')
@@ -55,6 +55,10 @@ def getCredencialesAWS(user_input,pass_input,url_imput):
        elemento = findElement(driver, 'awsui-input-1', 'ID')
        elemento.send_keys(pass_input)
        elemento = findElement(driver, '//awsui-button[@id="password-submit-button"]/button/span', 'XPATH')
+       elemento.click()
+       elemento = findElement(driver, 'awsui-input-2', 'ID')
+       elemento.send_keys(code_input)
+       elemento = findElement(driver, '//div[3]/awsui-button/button/span', 'XPATH')
        elemento.click()
        for account in ACCOUNTS:
            for key, value in ELEMENTS.items():
